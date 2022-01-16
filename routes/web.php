@@ -1,20 +1,17 @@
 <?php
 
+Route::view('/', 'home')->name('home');
+Route::view('/about', 'about')->name('about');
+Route::view('/portfolio', 'portfolio')->name('portfolio');
+Route::view('/contact', 'contact')->name('contact');
+
 // aprendible.com = Route::get('/', function)
 //aprendible.com/contacto = Route::get('contacto', function)
 
-Route::get('/', function(){
-    echo "<a href='" . route('contactos') ."'>Contactos 1</a><br>";
-    echo "<a href='" . route('contactos') ."'>Contactos 2</a><br>";
-    echo "<a href='" . route('contactos') ."'>Contactos 3</a><br>";
-    echo "<a href='" . route('contactos') ."'>Contactos 4</a><br>";
-    echo "<a href='" . route('contactos') ."'>Contactos 5</a><br>";
-});
+/*Route::get('/', function(){
+    $nombre = "Noah";
+    return view('home', compact('nombre')); //['nombre' => $nombre]
+})->name('home');*/
 
-Route::get('contactame', function(){
-    return "Sección de contactos";
-})->name('contactos');
+//Route::view('/', 'home')->name('/home'); //Políticas de privacidad, términos y condiciones
 
-Route::get('saludo/{nombre?}', function($nombre="Invitado"){
-    return "Saludos ". $nombre;
-});
