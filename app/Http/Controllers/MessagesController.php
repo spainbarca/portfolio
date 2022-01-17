@@ -34,8 +34,14 @@ class MessagesController extends Controller
      */
     public function store()
     {
-        return request('name');
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'content' => 'required|min:3'
+        ]);
         //return $request->get('email');
+        return 'Datos validados';
     }
 
     /**
