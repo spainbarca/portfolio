@@ -1,8 +1,6 @@
 <?php
 
-/*Route::view('/', 'home')->name('home');
-Route::view('/about', 'about')->name('about');
+Route::view('/', 'home')->name('home');
+Route::view('/about/{param?}', 'about')->name('about');
 Route::get('/portfolio', 'PortfolioController@index')->name('portfolio');
-Route::view('/contact', 'contact')->name('contact');*/
-
-Route::apiResource('proyectos', 'PortfolioController');
+Route::view('/contact', 'contact')->name('contact');
