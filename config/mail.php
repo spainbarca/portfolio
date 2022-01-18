@@ -112,6 +112,12 @@ return [
     |
     */
 
+    'mailers' => [
+        'sendgrid' => [
+            'transport' => 'sendgrid',
+        ],
+    ],
+
     'markdown' => [
         'theme' => 'default',
 
