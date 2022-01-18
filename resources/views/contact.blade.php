@@ -3,7 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
-	<h1>Contact</h1>
+	<h1>{{ __('Contact')}}</h1>
 	{{-- {{ var_dump($errors->any()) }} --}}
 	{{-- @if($errors->any())
 		<ul>
@@ -13,7 +13,7 @@
 		</ul>
 	@endif --}}
 
-	<form method="POST" action="{{ route('contact') }}">
+	<form method="POST" action="{{ route('contact') }}" novalidate>
 		@csrf
 		<input name="name" placeholder="Nombre..." value="Noah"><br>
 		{!! $errors->first('name', '<small>:message</small><br>') !!}
@@ -27,6 +27,6 @@
 		<textarea name="content" placeholder="Mensaje...">{{ old('content') }}</textarea><br>
 		{!! $errors->first('content', '<small>:message</small><br>') !!}
 
-		<button>Enviar</button>
+		<button>@lang('Send')</button>
 	</form>
 @endsection

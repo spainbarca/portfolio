@@ -39,6 +39,9 @@ class MessagesController extends Controller
             'email' => 'required|email',
             'subject' => 'required',
             'content' => 'required|min:3'
+        ],
+        [
+            'name.required' => __('I need your name'),
         ]);
         //return $request->get('email');
         return 'Datos validados';
