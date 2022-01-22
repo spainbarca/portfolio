@@ -5,10 +5,11 @@
 @section('content')
 	<h1>Portfolio</h1>
 	<ul>
-		@forelse ($portfolio as $portfolioItem)
-			<li>{{$portfolioItem['title']}}<small>{{$loop->first ? 'Es el primero' : ''}}</small></li>
+		@forelse ($projects as $project)
+			<li>{{$project->title}} <br><small>{{$project->description}}</small> <br> {{ $project->created_at->diffForHumans() }}</li>
 		@empty
 			<li>No hay proyectos para mostrar</li>
 		@endforelse
+		{{ $projects->links() }}
 	</ul>
 @endsection
