@@ -6,7 +6,7 @@ use App\Mail\MessageReceived;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
-class MessagesController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.

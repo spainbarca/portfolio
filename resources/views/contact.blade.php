@@ -13,7 +13,7 @@
 		</ul>
 	@endif --}}
 
-	<form method="POST" action="{{ route('contact') }}" novalidate>
+	<form method="POST" action="{{ route('messages.store') }}" novalidate>
 		@csrf
 		<input name="name" placeholder="Nombre..." value="Noah"><br>
 		{!! $errors->first('name', '<small>:message</small><br>') !!}

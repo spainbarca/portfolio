@@ -4,7 +4,8 @@ App::setlocale("es");
 
 Route::view('/', 'home')->name('home');
 Route::view('/about/{param?}', 'about')->name('about');
-Route::get('/portfolio', 'PortfolioController@index')->name('portfolio');
+Route::get('/portfolio', 'ProjectController@index')->name('projects.index');
+Route::get('/portfolio/{id}', 'ProjectController@show')->name('projects.show');
 Route::view('/contact', 'contact')->name('contact');
 
-Route::post('contact', 'MessagesController@store');
+Route::post('contact', 'MessageController@store')->name('messages.store');
