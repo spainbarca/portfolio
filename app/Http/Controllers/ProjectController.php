@@ -33,7 +33,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       /* $title = request('title');
+        $url = request('url');
+        $description = request('description');*/
+
+        /*Project::create([
+            'title' => request('title'),
+            'url' => request('url'),
+            'description' => request('description'),
+        ]);*/
+
+        Project::create(request()->all());
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -71,5 +83,10 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function create()
+    {
+        return view('projects.create');
     }
 }
