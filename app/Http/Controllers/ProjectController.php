@@ -42,8 +42,15 @@ class ProjectController extends Controller
             'url' => request('url'),
             'description' => request('description'),
         ]);*/
+        //return request()->only('title', 'url', 'description');
 
-        Project::create(request()->all());
+        $fields = request()->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'description' => 'required',
+        ]);
+
+        Project::create($fields);
 
         return redirect()->route('projects.index');
     }
