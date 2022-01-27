@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -31,26 +32,9 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProjectRequest $request)
     {
-       /* $title = request('title');
-        $url = request('url');
-        $description = request('description');*/
-
-        /*Project::create([
-            'title' => request('title'),
-            'url' => request('url'),
-            'description' => request('description'),
-        ]);*/
-        //return request()->only('title', 'url', 'description');
-
-        $fields = request()->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'description' => 'required',
-        ]);
-
-        Project::create($fields);
+        Project::create( $request->validated());
 
         return redirect()->route('projects.index');
     }
