@@ -17,17 +17,17 @@
 		@csrf
 		<label>
 			Título del proyecto <br>
-			<input type="text" name="title">
+			<input type="text" name="title" value="old('title')">
 		</label>
 		<br>
 		<label>
 			URL del proyecto <br>
-			<input type="text" name="url">
+			<input type="text" name="url" value="old('url')">
 		</label>
 		<br>
 		<label>
 			Descripción del proyecto <br>
-			<textarea name="description"></textarea>
+			<textarea name="description">{{old('description')}}</textarea>
 		</label>
 		<br>
 		<button>Guardar</button>
