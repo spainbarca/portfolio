@@ -36,7 +36,7 @@ class ProjectController extends Controller
     {
         Project::create( $request->validated());
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status', 'El proyecto fue creado con éxito');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProjectController extends Controller
     {
         $project->update($request->validated());
 
-        return redirect()->route('projects.show', $project);
+        return redirect()->route('projects.show', $project)->with('status', 'El proyecto fue actualizado con éxito');
     }
 
     /**
@@ -78,7 +78,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status', 'El proyecto fue eliminado con éxito');
     }
 
     public function create()

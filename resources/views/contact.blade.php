@@ -4,16 +4,8 @@
 
 @section('content')
 	<h1>{{ __('Contact')}}</h1>
-	{{-- {{ var_dump($errors->any()) }} --}}
-	{{-- @if($errors->any())
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	@endif --}}
 
-	<form method="POST" action="{{ route('messages.store') }}" novalidate>
+		<form method="POST" action="{{ route('messages.store') }}" novalidate>
 		@csrf
 		<input name="name" placeholder="Nombre..." value="Noah"><br>
 		{!! $errors->first('name', '<small>:message</small><br>') !!}
