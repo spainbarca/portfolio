@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\MessageReceived;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class MessageController extends Controller
 {
@@ -52,7 +54,7 @@ class MessageController extends Controller
 
         //return new MessageReceived($message);
 
-        return back()->with('status', 'Recibimos tu mensaje, te responderemos en 24 horas.');
+        return back()->withErrors($message)->with('status', 'Recibimos tu mensaje, te responderemos en 24 horas.');
     }
 
     /**
