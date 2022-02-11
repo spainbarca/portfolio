@@ -29,7 +29,7 @@ class ProjectController extends Controller
             ['title' => 'Proyecto #4'],
         ];*/
         return view('projects.index', [
-            'projects' => Project::paginate(),
+            'projects' => Project::paginate(6),
         ]);
     }
 
