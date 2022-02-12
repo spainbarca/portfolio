@@ -14,27 +14,36 @@
 		</div>
 		<hr>
 		<p class="lead text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-		<ul class="list-group">
+		<div class="d-flex flex-wrap justify-content-between align-items-start">
 			@forelse ($projects as $project)
-				<li class="list-group-item border-0 mb-3 shadow-sm">
-					<a
-						class="text-secondary d-flex justify-content-between align-items-center"
-						href="{{ route('projects.show', $project) }}"
-					>
-						<span class="font-weight-bold">
-							{{$project->title}}
-						</span>
-						<span class="text-black-50">
-							{{$project->created_at->format('d/m/Y')}}
-						</span>
-					</a>
-				</li>
+				<div class="card border-0 shadow-sm mt-4 mx-auto" style="width: 18rem">
+					@if($project->image)
+						<img class="card-img-top"
+							src="/storage/{{$project->image}}"
+							alt="{{$project->title}}"
+						>
+					@endif
+					<div class="card-body">
+						<h5 class="card-title">
+							<a href="{{ route('projects.show', $project) }}">{{ $project->title}}</a>
+						</h5>
+						<h6 class="card-subtitle">{{ $project->created_at->format('d/m/Y') }}</h6>
+						<p class="card-text text-truncate">{{ $project->description }}</p>
+						<a href="{{ route('projects.show', $project) }}"
+							class="btn btn-primary btn-sm">Ver más ...
+						</a>
+					</div>
+				</div>
 			@empty
-				<li class="list-group-item border-0 mb-3 shadow-sm">
-					No hay proyectos para mostrar
-				</li>
+				<div class="card">
+					<div class="card-body">
+						No hay proyectos para mostrar
+					</div>
+				</div>
 			@endforelse
+		</div>
+		<div class="mt-4">
 			{{ $projects->links() }}
-		</ul>
+		</div>
 	</div>
 @endsection
