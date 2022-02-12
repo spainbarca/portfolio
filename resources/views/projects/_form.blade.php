@@ -1,4 +1,10 @@
 @csrf
+
+<div class="custom-file">
+	<input type="file" class="custom-file-input" id="customFile" name="image">
+	<label class="custom-file-label" for="customFile">Choose File</label>
+</div>
+
 <div class="form-group">
 	<label for="title">Título del proyecto </label>
 	<input
