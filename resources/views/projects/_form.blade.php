@@ -3,7 +3,7 @@
 	<img class="card-img-top mb-4 img-fluid hover-shadow rounded"
 	src="/storage/{{ $project->image }}"
 	alt="{{ $project->title }}"
-	style=" box-shadow: 10px 10px 5px #ccc;"
+	style="height: 250px; object-fit: cover; box-shadow: 10px 10px 5px #ccc;"
 	>
 @endif
 
