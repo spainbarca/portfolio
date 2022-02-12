@@ -1,6 +1,13 @@
 @csrf
+@if($project->image)
+	<img class="card-img-top mb-4 img-fluid hover-shadow rounded"
+	src="/storage/{{ $project->image }}"
+	alt="{{ $project->title }}"
+	style=" box-shadow: 10px 10px 5px #ccc;"
+	>
+@endif
 
-<div class="custom-file">
+<div class="custom-file mb-2">
 	<input type="file" class="custom-file-input" id="customFile" name="image">
 	<label class="custom-file-label" for="customFile">Choose File</label>
 </div>
