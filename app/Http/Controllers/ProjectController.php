@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveProjectRequest;
 use App\Project;
+use App\Events\ProjectSaved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
 class ProjectController extends Controller
 {
     /**
@@ -47,12 +46,7 @@ class ProjectController extends Controller
         $project->image = $request->file('image')->store('images');
         $project->save();
 
-        $image = Image::make(Storage::get($project->image))
-            ->widen(600)
-            ->limitColors(255)
-            ->encode();
-
-        Storage::put($project->image, (string)$image);
+        ProjectSaved::dispatch($project);
 
         return redirect()->route('projects.index')->with('status', 'El proyecto fue creado con éxito');
     }
@@ -88,13 +82,7 @@ class ProjectController extends Controller
             $project->image = $request->file('image')->store('images');
             $project->save();
 
-            // optimización
-            $image = Image::make(Storage::get($project->image))
-                ->widen(600)
-                ->limitColors(255)
-                ->encode();
-
-            Storage::put($project->image, (string)$image);
+            ProjectSaved::dispatch($project);
 
         } else {
              $project->update(array_filter($request->validated()));
