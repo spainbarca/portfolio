@@ -30,7 +30,7 @@ class OptimizeProjectImage implements ShouldQueue
     {
         // optimización
         $image = Image::make(Storage::get($event->project->image))
-            ->widen(600)
+            ->widen(800)
             ->limitColors(255)
             ->encode();
 
