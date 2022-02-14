@@ -1,5 +1,9 @@
 <?php
 
+/*DB::listen(function($query) {
+	var_dump($query->sql);
+});*/
+
 App::setlocale("es");
 
 Route::view('/', 'home')->name('home');

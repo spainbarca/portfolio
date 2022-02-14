@@ -31,7 +31,7 @@ class ProjectController extends Controller
             ['title' => 'Proyecto #4'],
         ];*/
         return view('projects.index', [
-            'projects' => Project::paginate(6),
+            'projects' => Project::with('category')->latest()->paginate(6),
         ]);
     }
 
