@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Events\ProjectSaved;
 use App\Http\Requests\SaveProjectRequest;
 use App\Project;
-use App\Events\ProjectSaved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
@@ -107,6 +108,7 @@ class ProjectController extends Controller
     {
         return view('projects.create', [
             'project' => new Project,
+            'categories' => Category::pluck('name','id'),
         ]);
     }
 
@@ -114,6 +116,7 @@ class ProjectController extends Controller
     {
         return view('projects.edit', [
             'project' => $project,
+            'categories' => Category::pluck('name','id'),
         ]);
     }
 }
