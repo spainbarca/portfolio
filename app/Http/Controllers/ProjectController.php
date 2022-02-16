@@ -24,6 +24,7 @@ class ProjectController extends Controller
 
     public function index()
     {
+        //return Project::onlyTrashed()->with('category')->latest()->paginate();
         /*$portfolio = [
             ['title' => 'Proyecto #1'],
             ['title' => 'Proyecto #2'],
@@ -33,6 +34,7 @@ class ProjectController extends Controller
         return view('projects.index', [
             'newProject' => new Project,
             'projects' => Project::with('category')->latest()->paginate(6),
+            'deletedProjects' => Project::onlyTrashed()->get(),
         ]);
     }
 
@@ -100,9 +102,28 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Storage::delete($project->image);
+         $this->authorize('delete', $project);
         $project->delete();
         return redirect()->route('projects.index')->with('status', 'El proyecto fue eliminado con éxito');
+    }
+
+    public function forceDelete( $projectUrl)
+    {
+        $project = Project::withTrashed()->whereUrl($projectUrl)->firstOrFail();
+         $this->authorize('forceDelete', $project);
+
+         Storage::delete($project->image);
+
+         $project->forceDelete();
+        return redirect()->route('projects.index')->with('status', 'El proyecto fue eliminado permanentemente');
+    }
+
+    public function restore( $projectUrl)
+    {
+        $project = Project::withTrashed()->whereUrl($projectUrl)->firstOrFail();
+         $this->authorize('restore', $project);
+        $project->restore();
+        return redirect()->route('projects.index')->with('status', 'El proyecto fue restaurado con éxito');
     }
 
     public function create()

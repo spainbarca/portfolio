@@ -57,5 +57,30 @@
 		<div class="mt-4">
 			{{ $projects->links() }}
 		</div>
+		@can('view-deleted-projects')
+		<h4>Papelera</h4>
+			<ul class="list-group">
+				@foreach($deletedProjects as $deletedProject)
+					<li class="list-group-item">
+						{{ $deletedProject->title }}
+						@can('restore', $deletedProject)
+						<form method="POST" action="{{ route('projects.restore', $deletedProject) }}" class="d-inline">
+							@csrf @method('PATCH')
+							<button class="btn btn-sm btn-info">Restaurar</button>
+						</form>
+						@endcan
+
+						@can('forceDelete', $deletedProject)
+						<form method="POST"
+						onsubmit="return confirm('Esta acción no se puede deshacer, ¿Estás seguro de querer eliminar este proyecto?')"
+						action="{{ route('projects.forceDelete', $deletedProject) }}" class="d-inline">
+							@csrf @method('DELETE')
+							<button class="btn btn-sm btn-danger">Eliminar permanente</button>
+						</form>
+						@endcan
+					</li>
+				@endforeach
+			</ul>
+		@endcan
 	</div>
 @endsection
