@@ -31,6 +31,7 @@ class ProjectController extends Controller
             ['title' => 'Proyecto #4'],
         ];*/
         return view('projects.index', [
+            'newProject' => new Project,
             'projects' => Project::with('category')->latest()->paginate(6),
         ]);
     }
@@ -118,6 +119,7 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
+        $this->authorize('update', $project);
         return view('projects.edit', [
             'project' => $project,
             'categories' => Category::pluck('name','id'),
