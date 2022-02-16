@@ -106,10 +106,14 @@ class ProjectController extends Controller
 
     public function create()
     {
+        //abort_unless(Gate::allows('create-projects'), 403);
+        $this->authorize('create-projects');
+
         return view('projects.create', [
             'project' => new Project,
             'categories' => Category::pluck('name','id'),
         ]);
+
     }
 
     public function edit(Project $project)

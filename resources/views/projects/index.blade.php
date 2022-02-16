@@ -13,11 +13,11 @@
 			@else
 				<h1 class="display-4 mb-0">Portafolio</h1>
 			@endisset
-			@auth
+			@can('create-projects')
 			<a class="btn btn-primary" href="{{ route('projects.create') }}">
 				Crear proyecto
 			</a>
-			@endauth
+			@endcan
 		</div>
 		<hr>
 		<p class="lead text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
